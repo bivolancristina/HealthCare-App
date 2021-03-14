@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Care For U</string>
+    <string name="button_main">Send</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="loginbtn">Login</string>
+    <string name="registerbtn">Register</string>
+    <string name="welcome_text">Welcome</string>
+    <string name="welcome_text2">Create a new account</string>
+    <string name="welcome_text3">Sign In</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="login_text">Already registered? Login here </string>
+    <string name="here">here </string>
+    <string name="text_main">Dashboard </string>
+    <string name="logout">Logout </string>
+    <string name="registered_text">New here? Create Account </string>
+</resources>
