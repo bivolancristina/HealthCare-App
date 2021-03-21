@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    android:background="@color/colorWhite1"
     android:orientation="vertical"
-    >
+    tools:context=".LoginActivity">
 
     <TextView
         android:id="@+id/welcome_text"
@@ -35,14 +35,14 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="300dp"
         android:hint="@string/email"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.65" />
 
     <EditText
         android:id="@+id/passwordlogin"
@@ -77,11 +77,13 @@
 
         <Button
             android:id="@+id/loginbtn"
-            style="@style/Widget.AppCompat.Button"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/loginbtn"
-            android:textSize="24sp"
+            android:textColor="@color/colorWhite1"
+            android:textSize="14sp"
+            app:backgroundTint="@color/colorPrimary"
             tools:layout_editor_absoluteX="132dp"
             tools:layout_editor_absoluteY="385dp" />
 

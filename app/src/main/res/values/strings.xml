@@ -16,4 +16,13 @@
     <string name="text_main">Dashboard </string>
     <string name="logout">Logout </string>
     <string name="registered_text">New here? Create Account </string>
+    <string name="smart_medicine_assistant">SMART MEDICINE ASSISTANT</string>
+    <string name="alarm">alarm</string>
+    <string name="add_alarm">Add Alarm</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>

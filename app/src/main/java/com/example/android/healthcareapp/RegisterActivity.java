@@ -138,9 +138,5 @@ public class RegisterActivity extends AppCompatActivity {
         });
     };
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-    }
 }
