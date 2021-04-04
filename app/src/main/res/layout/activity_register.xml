@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite1"
     android:visibility="visible"
-    tools:context=".RegisterActivity">
+    tools:context=".Controllers.RegisterActivity">
 
     <TextView
         android:id="@+id/welcome_text"

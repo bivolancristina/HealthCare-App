@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite1"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".Controllers.LoginActivity">
 
     <TextView
         android:id="@+id/welcome_text"
