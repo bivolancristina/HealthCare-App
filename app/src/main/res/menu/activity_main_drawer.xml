@@ -2,39 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     >
-
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/add_alarm_nav"
-            android:icon="@drawable/ic_add_alarm"
-            android:title="Add Alarm" />
+            android:id="@+id/nav_medrem"
+            android:icon="@drawable/ic_watch_later_black_24dp"
+            android:title="Med Reminder" />
+
         <item
-            android:id="@+id/my_alarm_nav"
-            android:icon="@drawable/ic_my_alarm"
-            android:title="My Alarms" />
+            android:id="@+id/nav_healthtips"
+            android:icon="@drawable/ic_note_add_black_24dp"
+            android:title="Health Tips" />
         <item
-            android:id="@+id/my_address"
-            android:icon="@drawable/ic_prevention_man"
-            android:title="My Address" />
+            android:id="@+id/nav_medinfo"
+            android:icon="@drawable/ic_info_black_24dp"
+            android:title="Know your medicine" />
+
+
         <item
-            android:id="@+id/action_logout"
-            android:title="Logout"
-             />
+            android:id="@+id/nav_hosp"
+            android:icon="@drawable/ic_add_location_black_24dp"
+            android:title="Nearby Hospitals" />
 
     </group>
 
-    <item android:title="More About">
-        <menu>
-            <item
-                android:id="@+id/meds_detail_nav"
-                android:icon="@drawable/ic_med_detail"
-                android:title="Medicine Details" />
-
-            <item
-                android:id="@+id/important_conatct_nav"
-                android:icon="@drawable/ic_important_contact"
-                android:title="Important Contact" />
-        </menu>
-    </item>
 
 </menu>
