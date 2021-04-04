@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp;
+package com.example.android.healthcareapp.Controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.android.healthcareapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.action_logout) {
 
             FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }

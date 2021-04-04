@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp;
+package com.example.android.healthcareapp.Controllers;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android.healthcareapp.R;
+import com.example.android.healthcareapp.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -73,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         };
         if(Auth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
 
@@ -133,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
     };

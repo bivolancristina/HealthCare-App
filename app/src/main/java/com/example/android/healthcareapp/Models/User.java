@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp;
+package com.example.android.healthcareapp.Models;
 
 public class User {
     public String firstName,lastName,email,birthdate;
