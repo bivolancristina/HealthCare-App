@@ -1,7 +1,9 @@
 package com.example.android.healthcareapp.Controllers;
 
 import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,17 +23,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.android.healthcareapp.Models.CustomDialogClass;
 import com.example.android.healthcareapp.R;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , FragmentReminder.OnFragmentInteractionListener ,Nearbyhosp.OnFragmentInteractionListener,
         HealthTips.OnFragmentInteractionListener,
         Home.OnFragmentInteractionListener {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    FirebaseAuth mAuth;
+    public ImageView iv;
     TextView tv;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 
@@ -48,8 +50,69 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setTitle("Care for U");
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        mAuth = FirebaseAuth.getInstance();
 
+        Intent intent = getIntent();
+        if(intent.getExtras()!=null)
+        {
+            if(intent.getExtras().getInt("id")!=0)
+            {
+                int i = intent.getExtras().getInt("id");
+                String s=intent.getExtras().getString("text");
+                View headerView =navigationView.inflateHeaderView(R.layout.nav_header_main);
+
+                iv=(ImageView)headerView.findViewById(R.id.nav_imageView) ;
+                tv=(TextView) headerView.findViewById(R.id.nav_tv);
+                tv.setText("Hi, "+s);
+                iv.setImageResource(i);
+
+                SharedPreferences sp=getSharedPreferences("Shpr", Context.MODE_PRIVATE);
+                SharedPreferences.Editor ed=sp.edit();
+                ed.putBoolean("logged",true);
+                ed.putString("User",s);
+                ed.putInt("imgRes",i);
+                ed.commit();
+                Home hm = new Home();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, hm).commit();
+            }
+            else {
+                FragmentReminder rm = new FragmentReminder();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, rm).commit();
+                SharedPreferences sp=getSharedPreferences("Shpr", Context.MODE_PRIVATE);
+                int i = sp.getInt("imgRes",0);
+                String s=sp.getString("User",null);
+                View headerView =navigationView.inflateHeaderView(R.layout.nav_header_main);
+
+                iv=(ImageView)headerView.findViewById(R.id.nav_imageView) ;
+                tv=(TextView) headerView.findViewById(R.id.nav_tv);
+                tv.setText("Hi, "+s);
+                iv.setImageResource(i);
+            }
+
+        }
+        else {
+            Home hm = new Home();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, hm).commit();
+
+            SharedPreferences sp=getSharedPreferences("Shpr", Context.MODE_PRIVATE);
+            Boolean loggedin=sp.getBoolean("logged",false);
+
+            if(!loggedin)
+            {
+                CustomDialogClass cdd = new CustomDialogClass(this, getApplicationContext());
+                cdd.show();
+            }
+            else
+            {
+                int i = sp.getInt("imgRes",0);
+                String s=sp.getString("User",null);
+                View headerView =navigationView.inflateHeaderView(R.layout.nav_header_main);
+
+                iv=(ImageView)headerView.findViewById(R.id.nav_imageView) ;
+                tv=(TextView) headerView.findViewById(R.id.nav_tv);
+                tv.setText("Hi, "+s);
+                iv.setImageResource(i);
+            }
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 
@@ -61,35 +124,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if (currentUser == null){
-
-            sendToReg();
-        }else{
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-            View headerView =navigationView.getHeaderView(0);
-
-            tv=(TextView) headerView.findViewById(R.id.nav_tv);
-
-            tv.setText("Hi, "+ currentUser.getEmail());
-        }
 
 
-    }
-
-    private void sendToReg() {
-
-        Intent toMain = new Intent(MainActivity.this, RegisterActivity.class);
-        //flag set to prevent going back to startpage after being logged in
-        toMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(toMain);
-        finish();
-    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -136,12 +172,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.container,ht).commit();
 
 
-        } else if (id == R.id.logout) {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-            startActivity(intent);
-            finish();
-
+        } else if (id == R.id.nav_chgname) {
+            SharedPreferences sp=getSharedPreferences("Shpr", Context.MODE_PRIVATE);
+            SharedPreferences.Editor ed=sp.edit();
+            ed.putBoolean("logged",false);
+            ed.putString("User",null);
+            ed.putInt("imgRes",0);
+            ed.commit();
+            CustomDialogClass cdd = new CustomDialogClass(this, getApplicationContext());
+            cdd.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
