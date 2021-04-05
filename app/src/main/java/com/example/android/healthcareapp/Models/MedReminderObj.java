@@ -24,9 +24,10 @@ public class MedReminderObj  {
     Intent intent;
     Context context;
     int alarmReqCode;
+    String user;
 
     public MedReminderObj(Context context, int count ,int interval, int times, String[] timers, String time_unit, String starting_time,
-                          String starting_date,String ending_date, String medname, String medinfo, String weekday) {
+                          String starting_date,String ending_date, String medname, String medinfo, String weekday,String user) {
         this.context = context;
         this.interval = interval;
         this.times = times;
@@ -38,6 +39,7 @@ public class MedReminderObj  {
         this.medname = medname;
         this.medinfo = medinfo;
         this.weekday = weekday;
+        this.user = user;
         alarmReqCode=count;
     }
 

@@ -1,10 +1,13 @@
 package com.example.android.healthcareapp.Controllers;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.fragment.app.Fragment;
 
@@ -16,7 +19,6 @@ import com.example.android.healthcareapp.R;
  * create an instance of this fragment.
  */
 public class HealthTips extends Fragment {
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,6 +27,8 @@ public class HealthTips extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private OnFragmentInteractionListener mListener;
 
     public HealthTips() {
         // Required empty public constructor
@@ -57,12 +61,66 @@ public class HealthTips extends Fragment {
         }
     }
 
+    WebView w;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_health_tips, container, false);
+        getActivity().setTitle("Health Tips");
+        View v=inflater.inflate(R.layout.fragment_health_tips, container, false);
+        w=(WebView)v.findViewById(R.id.w_health);
+        w.setWebViewClient(new dyk());
+        w.getSettings().getLoadsImagesAutomatically();
+        w.getSettings().getJavaScriptEnabled();
+        w.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        w.loadUrl("http://www.gkfacts.in/search/label/Health Tips");
+        //w.loadUrl("https://www.google.co.in/");
+        return v;
     }
+
+    public class dyk extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

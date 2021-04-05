@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , FragmentReminder.OnFragmentInteractionListener ,Nearbyhosp.OnFragmentInteractionListener,
-        Knowmed.OnFragmentInteractionListener,HealthTips.OnFragmentInteractionListener,
+        HealthTips.OnFragmentInteractionListener,
         Home.OnFragmentInteractionListener {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     FirebaseAuth mAuth;
@@ -130,16 +130,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.container,nh).commit();
 
 
-        } else if (id == R.id.nav_medinfo) {
-            Knowmed km=new Knowmed();
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,km).commit();
-
-
         }
         else if (id == R.id.nav_healthtips) {
             HealthTips ht=new HealthTips();
             getSupportFragmentManager().beginTransaction().replace(R.id.container,ht).commit();
 
+
+        } else if (id == R.id.logout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(intent);
+            finish();
 
         }
 

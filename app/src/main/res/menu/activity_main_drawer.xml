@@ -12,10 +12,7 @@
             android:id="@+id/nav_healthtips"
             android:icon="@drawable/ic_note_add_black_24dp"
             android:title="Health Tips" />
-        <item
-            android:id="@+id/nav_medinfo"
-            android:icon="@drawable/ic_info_black_24dp"
-            android:title="Know your medicine" />
+
 
 
         <item
@@ -24,6 +21,14 @@
             android:title="Nearby Hospitals" />
 
     </group>
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_arrow_back_black_24dp"
+                android:title="Log Out" />
 
+        </menu>
+    </item>
 
 </menu>
