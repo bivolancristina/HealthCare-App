@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,9 +20,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.android.healthcareapp.DatabaseHandler;
+import com.example.android.healthcareapp.Models.AddReminderAsync;
 import com.example.android.healthcareapp.Models.MedReminderObj;
+import com.example.android.healthcareapp.Models.MyTaskParams;
 import com.example.android.healthcareapp.R;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,7 +38,6 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
     ImageView back;
     TextView timers[] = new TextView[6];
     TextView starting_time,starting_date,ending_date,medname,medinfo;
-    CheckBox weekday; //TODO : Handle Weekday
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -249,18 +248,18 @@ public class AddReminderActivity extends AppCompatActivity implements View.OnCli
         ar.add(starting_time.getText().toString());
         ar.add(starting_date.getText().toString());
         ar.add(ending_date.getText().toString());
-        ar.add(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
 
 
         MedReminderObj mro= new MedReminderObj(getApplicationContext(),count, (Integer) ar.get(3),
                 NoOfTimes,timersArray,(String)ar.get(4),(String)ar.get(8),
-                (String)ar.get(9),(String)ar.get(10),(String)ar.get(1),(String)ar.get(2),(String)ar.get(6),(String)ar.get(11));
+                (String)ar.get(9),(String)ar.get(10),(String)ar.get(1),(String)ar.get(2),(String)ar.get(6));
         mro.setMedReminder();
 
         Toast.makeText(this,"Reminder added sucessfully", Toast.LENGTH_SHORT).show();
-        dh= new DatabaseHandler(this);
-        dh.addReminder(ar);
+        MyTaskParams params = new MyTaskParams(this,ar);
+        AddReminderAsync myTask = new AddReminderAsync();
+        myTask.execute(params);
 
         Intent intent = new Intent(this,MainActivity.class);
         intent.putExtra("frag","Med Reminder");

@@ -75,7 +75,7 @@ public class HealthTips extends Fragment {
         w.getSettings().getJavaScriptEnabled();
         w.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         w.loadUrl("http://www.gkfacts.in/search/label/Health Tips");
-        //w.loadUrl("https://www.google.co.in/");
+
         return v;
     }
 

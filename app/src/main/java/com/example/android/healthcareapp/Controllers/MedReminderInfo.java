@@ -3,6 +3,7 @@ package com.example.android.healthcareapp.Controllers;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -109,8 +110,9 @@ public class MedReminderInfo extends AppCompatActivity {
     public void delete(View view) {
 
         DatabaseHandler dh= new DatabaseHandler(this);
-        if(dh.deleteReminder(ar.get(0).toString())>0)
+        if(dh.deleteReminder(ar.get(1).toString())>0)
         {
+            Log.d("ffffffffffffffffffff","");
             Toast.makeText(this, "Alarm Deleted Successfully", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("frag","Med Reminder");
