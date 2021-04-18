@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp.Controllers;
+package com.example.android.healthcareapp.Activity;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -23,12 +23,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.android.healthcareapp.Models.CustomDialogClass;
+import com.example.android.healthcareapp.Utils.CustomDialogClass;
 import com.example.android.healthcareapp.R;
+import com.example.android.healthcareapp.Fragment.FragmentReminder;
+import com.example.android.healthcareapp.Fragment.HealthTips;
+import com.example.android.healthcareapp.Fragment.Home;
+import com.example.android.healthcareapp.Fragment.Nearbyhosp;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , FragmentReminder.OnFragmentInteractionListener ,Nearbyhosp.OnFragmentInteractionListener,
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , FragmentReminder.OnFragmentInteractionListener , Nearbyhosp.OnFragmentInteractionListener,
         HealthTips.OnFragmentInteractionListener,
         Home.OnFragmentInteractionListener {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();

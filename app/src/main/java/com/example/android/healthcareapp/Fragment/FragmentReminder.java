@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp.Controllers;
+package com.example.android.healthcareapp.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,10 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.android.healthcareapp.DatabaseHandler;
-import com.example.android.healthcareapp.Models.CustomList;
+import com.example.android.healthcareapp.Activity.AddReminderActivity;
+import com.example.android.healthcareapp.Activity.MedReminderInfo;
+import com.example.android.healthcareapp.Database.DatabaseHandler;
+import com.example.android.healthcareapp.Utils.CustomList;
 import com.example.android.healthcareapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -119,7 +121,7 @@ public class FragmentReminder extends Fragment implements View.OnClickListener{
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent in=new Intent(getActivity(),MedReminderInfo.class);
+                Intent in=new Intent(getActivity(), MedReminderInfo.class);
                 in.putExtra("id",list.get(i).toString());
                 startActivity(in);
             }
@@ -154,7 +156,7 @@ public class FragmentReminder extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Intent in=new Intent(getActivity(),AddReminderActivity.class);
+        Intent in=new Intent(getActivity(), AddReminderActivity.class);
         startActivity(in);
     }
 

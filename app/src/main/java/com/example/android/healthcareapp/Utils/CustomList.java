@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp.Models;
+package com.example.android.healthcareapp.Utils;
 
 import android.app.Activity;
 import android.graphics.Color;

@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp.Controllers;
+package com.example.android.healthcareapp.Activity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -19,18 +19,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.healthcareapp.DatabaseHandler;
-import com.example.android.healthcareapp.Models.AddReminderAsync;
+import com.example.android.healthcareapp.Database.DatabaseHandler;
+import com.example.android.healthcareapp.Utils.AddReminderAsync;
 import com.example.android.healthcareapp.Models.MedReminderObj;
 import com.example.android.healthcareapp.Models.MyTaskParams;
 import com.example.android.healthcareapp.R;
+import com.example.android.healthcareapp.Fragment.FragmentReminder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import static android.view.View.GONE;
 
-public class AddReminderActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener,FragmentReminder.OnFragmentInteractionListener {
+public class AddReminderActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener, FragmentReminder.OnFragmentInteractionListener {
 
     Spinner interval,time_unit,times;
     LinearLayout freq_layout,starting_time_layout,weekdays_layout;

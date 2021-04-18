@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp.Controllers;
+package com.example.android.healthcareapp.Fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -15,8 +15,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.android.healthcareapp.Models.CustomAdapter;
-import com.example.android.healthcareapp.Models.CustomGrid;
+import com.example.android.healthcareapp.Utils.CustomAdapter;
+import com.example.android.healthcareapp.Utils.CustomGrid;
 import com.example.android.healthcareapp.R;
 
 import java.util.Timer;

@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp.Controllers;
+package com.example.android.healthcareapp.Fragment;
 
 import android.content.Context;
 import android.net.Uri;

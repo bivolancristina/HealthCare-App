@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp.Models;
+package com.example.android.healthcareapp.Utils;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -10,7 +10,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.healthcareapp.Controllers.MainActivity;
+import com.example.android.healthcareapp.Activity.MainActivity;
 import com.example.android.healthcareapp.R;
 
 public class CustomDialogClass extends Dialog implements

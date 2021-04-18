@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp;
+package com.example.android.healthcareapp.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.android.healthcareapp.Controllers.FragmentReminder;
+import com.example.android.healthcareapp.Fragment.FragmentReminder;
 
 import java.util.ArrayList;
 

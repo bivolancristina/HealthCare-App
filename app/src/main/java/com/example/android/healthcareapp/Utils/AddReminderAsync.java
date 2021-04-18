@@ -1,8 +1,9 @@
-package com.example.android.healthcareapp.Models;
+package com.example.android.healthcareapp.Utils;
 
 import android.os.AsyncTask;
 
-import com.example.android.healthcareapp.DatabaseHandler;
+import com.example.android.healthcareapp.Database.DatabaseHandler;
+import com.example.android.healthcareapp.Models.MyTaskParams;
 
 public class AddReminderAsync extends AsyncTask<MyTaskParams, Void, Void> {
     DatabaseHandler dh;

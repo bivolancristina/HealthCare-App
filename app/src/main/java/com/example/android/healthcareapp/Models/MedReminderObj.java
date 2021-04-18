@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.example.android.healthcareapp.Controllers.AlarmReciever;
+import com.example.android.healthcareapp.Activity.AlarmReceiver;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -52,7 +52,7 @@ public class MedReminderObj  {
         cal.set(Calendar.HOUR_OF_DAY, hrs);
         cal.set(Calendar.MINUTE, mins);
 
-        intent = new Intent(context, AlarmReciever.class);
+        intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra("Reminderid",alarmReqCode);
         alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 

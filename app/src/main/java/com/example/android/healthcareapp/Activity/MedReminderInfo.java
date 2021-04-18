@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp.Controllers;
+package com.example.android.healthcareapp.Activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.android.healthcareapp.DatabaseHandler;
+import com.example.android.healthcareapp.Database.DatabaseHandler;
 import com.example.android.healthcareapp.R;
 
 import java.util.ArrayList;

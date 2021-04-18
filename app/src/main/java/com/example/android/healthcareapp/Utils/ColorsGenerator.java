@@ -1,4 +1,4 @@
-package com.example.android.healthcareapp.Models;
+package com.example.android.healthcareapp.Utils;
 
 import java.util.Arrays;
 import java.util.List;
