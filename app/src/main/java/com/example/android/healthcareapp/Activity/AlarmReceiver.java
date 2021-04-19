@@ -1,18 +1,25 @@
 package com.example.android.healthcareapp.Activity;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
+
 import com.example.android.healthcareapp.Database.DatabaseHandler;
+import com.example.android.healthcareapp.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,6 +28,9 @@ import java.util.Calendar;
 public class AlarmReceiver extends BroadcastReceiver {
     static Ringtone ringtone;
     String ending_date;
+    private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
+    private static final int NOTIFICATION_ID = 0;
+    private NotificationManager mNotifyManager;
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -32,12 +42,23 @@ public class AlarmReceiver extends BroadcastReceiver {
         ending_date= (String) all.get(10);
         if( checkEndingDate()==0)
         {
-            Toast.makeText(context, "received", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Take your meds!", Toast.LENGTH_SHORT).show();
             Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             if (alarmUri == null) {
                 alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
             }
+            NotificationManager manager =
+                    (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                    .setSmallIcon(R.drawable.meds_icon)
+                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher))
+                    .setContentTitle("Care For U")
+                    .setContentText("Take your Meds!")
+                    .setOngoing(false)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setAutoCancel(true);
 
             //this will update the UI with message
             ringtone = RingtoneManager.getRingtone(context, alarmUri);
@@ -46,13 +67,33 @@ public class AlarmReceiver extends BroadcastReceiver {
             Intent i = new Intent().setClass(context,AlarmActivity.class);
             i.putExtra("AlarmActivityid",a);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            PendingIntent pendingIntent =
+                    PendingIntent.getActivity(
+                            context,
+                            0,
+                            i,
+                            PendingIntent.FLAG_ONE_SHOT
+                    );
+
+            builder.setContentIntent(pendingIntent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            {
+                String channelId = "Your_channel_id";
+                NotificationChannel channel = new NotificationChannel(
+                        channelId,
+                        "Channel human readable title",
+                        NotificationManager.IMPORTANCE_HIGH);
+                manager.createNotificationChannel(channel);
+                builder.setChannelId(channelId);
+            }
+            manager.notify(0, builder.build());
             context.startActivity(i);
         }
         else
         {
 
             AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            int times=Integer.parseInt((String) all.get(4));
+            int times=Integer.parseInt((String) all.get(5));
             if(times>1)
             {
                 for(int i=0;i<times;i++)

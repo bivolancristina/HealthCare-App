@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.healthcareapp">
+    <queries>
+        <package android:name="com.google.android.apps.maps" />
+    </queries>
     <permission
         android:name="com.example.android.healthcareapp.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
@@ -29,7 +32,9 @@
         android:theme="@style/Theme.HealthCareApp">
 
 
-
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
         <activity
             android:name=".Activity.MedReminderInfo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -55,6 +60,13 @@
             android:label="Care For U"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAi4rT6NmWMrC-gjLgZDXg9o4VE-fuoGZk" />
+
         <receiver
             android:name=".Activity.AlarmReceiver"
             android:enabled="true">
