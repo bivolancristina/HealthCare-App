@@ -60,7 +60,6 @@ public class MedReminderObj  {
 
             int hr = (int) interval;
             long t=cal.getTimeInMillis();
-            long tim= System.currentTimeMillis();
             alarmIntent = PendingIntent.getBroadcast(context,alarmReqCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP,t, hr * 60 * 60 * 1000, alarmIntent);
         }
@@ -88,36 +87,7 @@ public class MedReminderObj  {
             }
 
         }
-        else if (time_unit.equals("weeks")) {
-            PendingIntent pintentDay[]=new PendingIntent[times];
 
-            Map<Integer,Integer[]> map = new HashMap<Integer,Integer[]>();
-            for(int i=0;i<times;i++)
-            {
-                int hr=Integer.parseInt(timers[i].substring(0,timers[i].indexOf(':')));
-                int min=Integer.parseInt(timers[i].substring(timers[i].indexOf(':')+1));
-                map.put(i,new Integer[]{hr,min});
-            }
-            for(int i=0;i<times;i++)
-            {
-                Integer[] ip=map.get(i);
-                cal.set(Calendar.HOUR_OF_DAY, ip[0]);
-                cal.set(Calendar.MINUTE, ip[1]);
-                cal.set(Calendar.SECOND,0);
-
-                pintentDay[i] = PendingIntent.getBroadcast(context, alarmReqCode++, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                Log.d("Alarm Times",""+ip[0]+":"+ip[1]+"pp"+cal.getTimeInMillis());
-
-                alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pintentDay[i]);
-            }
-
-        }
-        else if (time_unit.equals("months")) {
-        }
     }
 
-
-    public void cancelReminder() {
-        alarmMgr.cancel(alarmIntent);
-    }
 }
