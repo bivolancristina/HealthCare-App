@@ -50,7 +50,7 @@ public class Nearbyhosp extends Fragment implements GoogleApiClient.ConnectionCa
         GoogleApiClient.OnConnectionFailedListener, OnMapReadyCallback {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String GOOGLE_API_KEY = "AIzaSyAi4rT6NmWMrC-gjLgZDXg9o4VE-fuoGZk";
+    private static final String GOOGLE_API_KEY = "AIzaSyDw1UQMuXEpU7MUp4RVqekOoOKTsLvgNec";
     GoogleMap googleMap;
     double latitude = 0;
     double longitude = 0;
@@ -195,6 +195,7 @@ public class Nearbyhosp extends Fragment implements GoogleApiClient.ConnectionCa
 
             if (location == null) {
                 while (location == null) {
+
                     location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                 }
 
@@ -225,7 +226,6 @@ public class Nearbyhosp extends Fragment implements GoogleApiClient.ConnectionCa
                 }
                 return;
             }
-
 
         }
     }
