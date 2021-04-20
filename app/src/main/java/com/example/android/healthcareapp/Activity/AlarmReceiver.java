@@ -99,14 +99,14 @@ public class AlarmReceiver extends BroadcastReceiver {
                 for(int i=0;i<times;i++)
                 {
                     PendingIntent pi = PendingIntent.getBroadcast(context,a--, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    alarmMgr.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime()+  60 * 1000, pi);
+                    alarmMgr.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), pi);
                     alarmMgr.cancel(pi);
                 }
             }
             else
             {
                 PendingIntent pi = PendingIntent.getBroadcast(context,a, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmMgr.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime()+  60 * 1000, pi);
+                alarmMgr.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), pi);
                 alarmMgr.cancel(pi);
             }
 

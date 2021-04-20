@@ -9,7 +9,6 @@ import android.util.Log;
 import com.example.android.healthcareapp.Activity.AlarmReceiver;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +19,6 @@ public class MedReminderObj  {
     String starting_time, starting_date, ending_date, medname, medinfo, weekday;
     AlarmManager alarmMgr;
     PendingIntent alarmIntent;
-    Calendar cur_cal;
     Intent intent;
     Context context;
     int alarmReqCode;
@@ -45,12 +43,10 @@ public class MedReminderObj  {
         int mins = Integer.parseInt(starting_time.substring(starting_time.lastIndexOf(':') + 1));
         int hrs = Integer.parseInt(starting_time.substring(0, starting_time.lastIndexOf(':')));
 
-        cur_cal = new GregorianCalendar();
-        cur_cal.setTimeInMillis(System.currentTimeMillis());//set the current time and date for this calendar
-
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, hrs);
         cal.set(Calendar.MINUTE, mins);
+        cal.set(Calendar.SECOND,0);
 
         intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra("Reminderid",alarmReqCode);
@@ -83,7 +79,7 @@ public class MedReminderObj  {
                 pintentDay[i] = PendingIntent.getBroadcast(context, alarmReqCode--, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 Log.d("Alarm Times",""+ip[0]+":"+ip[1]+"pp"+cal.getTimeInMillis());
 
-                alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pintentDay[i]);
+                alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pintentDay[i]);
             }
 
         }
